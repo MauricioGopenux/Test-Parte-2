@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellMovies" rowHeight="245" id="oPV-gI-sNL" customClass="MoviesTableViewCell" customModule="PruebaTest2" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="711" height="245"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oPV-gI-sNL" id="qQt-IK-ZKV">
+                <rect key="frame" x="0.0" y="0.0" width="711" height="245"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aaA-WM-UGV">
+                        <rect key="frame" x="0.0" y="0.0" width="711" height="250"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="250" id="aoR-Qx-mKD"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fce-Yu-cC9">
+                        <rect key="frame" x="20" y="173" width="45" height="27"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                        <color key="textColor" systemColor="systemBackgroundColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="aaA-WM-UGV" secondAttribute="trailing" id="BEe-2H-aTS"/>
+                    <constraint firstItem="aaA-WM-UGV" firstAttribute="leading" secondItem="qQt-IK-ZKV" secondAttribute="leading" id="FCk-Ss-IvA"/>
+                    <constraint firstAttribute="bottom" secondItem="aaA-WM-UGV" secondAttribute="bottom" id="YZX-rH-GZc"/>
+                    <constraint firstItem="aaA-WM-UGV" firstAttribute="top" secondItem="qQt-IK-ZKV" secondAttribute="top" id="cQV-DH-3As"/>
+                    <constraint firstItem="fce-Yu-cC9" firstAttribute="leading" secondItem="qQt-IK-ZKV" secondAttribute="leadingMargin" id="rxp-VB-FpX"/>
+                    <constraint firstItem="fce-Yu-cC9" firstAttribute="bottom" secondItem="qQt-IK-ZKV" secondAttribute="bottomMargin" id="zV2-fY-9Y1"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="deviceImageView" destination="aaA-WM-UGV" id="I5X-1i-ZVK"/>
+                <outlet property="titleLabel" destination="fce-Yu-cC9" id="tJa-w0-Xwg"/>
+            </connections>
+            <point key="canvasLocation" x="217.55725190839695" y="-9.5070422535211279"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
