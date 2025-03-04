@@ -8,10 +8,13 @@
 import UIKit
 
 struct Movie {
+    let id: Int
     let title: String
     let imageName: String
     let overview: String
 }
+
+
 
 
 

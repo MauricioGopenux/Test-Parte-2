@@ -11,63 +11,72 @@ class ListOfMoviesViewController: UIViewController {
 
     @IBOutlet weak var countMovies: UILabel!
     @IBOutlet weak var refreshButton: UIButton!
-    
     @IBOutlet weak var MoviesTable: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    
-    private var dataSource: TableViewDataSource?
+    var moviePresenter = MoviesPresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        countMovies.text = "Movies: \(movies.count)"
+        moviePresenter.delegate = self
+        moviePresenter.loadMovies()
+       
         
         MoviesTable.register(UINib(nibName: "MoviesTableViewCell", bundle: nil), forCellReuseIdentifier: "cellMovies")
-
-        
-        self.dataSource = TableViewDataSource(dataSource: movies)
-        MoviesTable.dataSource = dataSource
-        
+        MoviesTable.dataSource = self
         MoviesTable.delegate = self
-     
+        
+    }
+
+    @IBAction func didTapRefresh(_ sender: Any) {
+        
+        moviePresenter.deleteMovies()
         MoviesTable.reloadData()
-    }
-
-    @IBAction func didTapOnRefresh(_ sender: Any) {
+        countMovies.text = "Loading Movies ..."
+        activityIndicator.isHidden = false
         
-        
-        
-        let activityIndicatorViewController = RefreshViewController()
-            activityIndicatorViewController.view.frame = view.bounds
-            activityIndicatorViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            
-               view.addSubview(activityIndicatorViewController.view)
-               addChild(activityIndicatorViewController)
-               activityIndicatorViewController.didMove(toParent: self)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-         
-            activityIndicatorViewController.willMove(toParent: nil)
-                     activityIndicatorViewController.removeFromParent()
-                     activityIndicatorViewController.view.removeFromSuperview()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+            self.moviePresenter.loadMovies()
+            self.MoviesTable.reloadData()
+            self.countMovies.text = "Movies: \(self.moviePresenter.movies.count)"
+            self.activityIndicator.isHidden = true
         }
+        
+        
     }
 }
 
-extension ListOfMoviesViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let overView = ResumenViewController()
-               if let sheet = overView.sheetPresentationController {
-                   sheet.detents = [ .large()]
-                   sheet.selectedDetentIdentifier = .large
-                   sheet.prefersGrabberVisible = true
-                   sheet.preferredCornerRadius = 15
-               }
-        present(overView, animated: true, completion: nil)
-        let model = movies[indexPath.row]
-        
-        overView.resumenImage?.image = UIImage(named: model.imageName)
-        overView.resumenTitle?.text = model.title
-        overView.resumenText?.text = model.overview
+extension ListOfMoviesViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        moviePresenter.movies.count
     }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellMovies", for: indexPath) as! MoviesTableViewCell
+        
+        let model = moviePresenter.movies[indexPath.row]
+        cell.deviceImageView.image = UIImage(named: model.imageName)
+        cell.titleLabel.text = model.title
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movieId: Int = moviePresenter.movies[indexPath.row].id
+        moviePresenter.getMovie(movieId: movieId, referenceVC: self)
+        
+    }
+    
 }
+
+extension ListOfMoviesViewController: MoviePresenterDelegate {
+    func showMovies(movie: [Movie]) {
+        countMovies.text = "Movies: \(movie.count)"
+    }
+    
+    
+}
+
+
+

@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListOfMoviesViewController" customModule="PruebaTest2" customModuleProvider="target">
             <connections>
                 <outlet property="MoviesTable" destination="aSe-OM-lhb" id="CZd-tp-aKm"/>
+                <outlet property="activityIndicator" destination="5id-br-ppQ" id="m5D-p4-VCx"/>
                 <outlet property="countMovies" destination="Rrt-KA-zbn" id="3xm-bh-At6"/>
                 <outlet property="refreshButton" destination="mwQ-nG-cdA" id="dau-RL-m5b"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -28,7 +29,7 @@
                         <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
                     </buttonConfiguration>
                     <connections>
-                        <action selector="didTapOnRefresh:" destination="-1" eventType="touchUpInside" id="hQn-xY-UNS"/>
+                        <action selector="didTapRefresh:" destination="-1" eventType="touchUpInside" id="a6d-rI-h18"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movies: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rrt-KA-zbn">
@@ -41,13 +42,19 @@
                     <rect key="frame" x="0.0" y="107" width="393" height="711"/>
                     <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                 </tableView>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="5id-br-ppQ">
+                    <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
+                    <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Rrt-KA-zbn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="3kW-1U-4sE"/>
                 <constraint firstItem="aSe-OM-lhb" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="5Bl-EX-bP8"/>
+                <constraint firstItem="5id-br-ppQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="6hL-1u-CNd"/>
                 <constraint firstItem="Rrt-KA-zbn" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="5" id="NLI-et-qCU"/>
+                <constraint firstItem="5id-br-ppQ" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="UL6-2N-s0U"/>
                 <constraint firstItem="aSe-OM-lhb" firstAttribute="top" secondItem="mwQ-nG-cdA" secondAttribute="bottom" constant="5" id="Yu6-Qo-3A8"/>
                 <constraint firstItem="aSe-OM-lhb" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="aiH-Jd-IfJ"/>
                 <constraint firstItem="aSe-OM-lhb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="jVw-Iu-jNk"/>
