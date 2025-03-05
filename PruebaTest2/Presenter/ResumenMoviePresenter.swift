@@ -13,13 +13,12 @@ protocol loadDataResumen: AnyObject {
 
 final class ResumenMoviePresenter {
     
-    private var movieRepo: MovieRepository = MovieRepository()
+    private let movieRepo: MovieRepository = MovieRepository()
     weak var delegate: loadDataResumen?
     var movieId: Int?
     
     func getMovieById() {
-        guard let movieId: Int = movieId else { return }
-        let movie: Movie = movieRepo.getMovieById(movieId: movieId)
+        guard let movieId: Int = movieId, let movie: Movie = movieRepo.getMovieById(movieId: movieId) else { return }
         delegate?.configure(movie: movie)
     }
     

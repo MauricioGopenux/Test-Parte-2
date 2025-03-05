@@ -9,10 +9,10 @@ import Foundation
 
 final class MovieRepository {
     func getMovies() -> [Movie]{
-        MoviesData().movies
+        movies
     }
     
-    func getMovieById(movieId: Int) -> Movie {
-        return MoviesData().movies.first(where: { $0.id == movieId })!
+    func getMovieById(movieId: Int) -> Movie? {
+        movies.first(where: { $0.id == movieId })
     }
 }

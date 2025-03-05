@@ -9,9 +9,13 @@ import UIKit
 
 class MoviesTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var deviceImageView: UIImageView!
+    @IBOutlet private weak var deviceImageView: UIImageView!
     
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
     
-    
+    func configure(movie: Movie) {
+        deviceImageView.image = UIImage(named: movie.imageName)
+        titleLabel.text = movie.title
+        
+    }
 }

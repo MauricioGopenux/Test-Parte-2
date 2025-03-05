@@ -8,29 +8,20 @@
 import Foundation
 import UIKit
 
-protocol MoviePresenterDelegate: AnyObject {
-    func showMovies(movie: [Movie])
-}
-
 final class MoviesPresenter {
     
-    private var movieRepo: MovieRepository = MovieRepository()
-    
-    weak var delegate: MoviePresenterDelegate?
-    
-    private var resumenPresenter: ResumenMoviePresenter = ResumenMoviePresenter()
+    private let movieRepo: MovieRepository = MovieRepository()
     
     var movies: [Movie] = []
 
 
     func loadMovies() {
         movies = movieRepo.getMovies()
-        delegate?.showMovies(movie: movies)
     }
     
     
-    func getMovie(movieId: Int, referenceVC: UIViewController) {
-        
+    func showMovieResumen(movieId: IndexPath, referenceVC: UIViewController) {
+        let movieId: Int = movies[movieId.row].id
         let resumenPresenter: ResumenMoviePresenter = ResumenMoviePresenter()
         resumenPresenter.setMovie(movieId: movieId)
         let resumenVC: ResumenViewController = ResumenViewController(resumenPresenter: resumenPresenter)

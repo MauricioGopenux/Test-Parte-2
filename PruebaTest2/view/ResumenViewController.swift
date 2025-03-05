@@ -9,15 +9,15 @@ import UIKit
 
 class ResumenViewController: UIViewController {
 
-    @IBOutlet weak var resumenImage: UIImageView!
+    @IBOutlet private weak var resumenImage: UIImageView!
     
-    @IBOutlet weak var resumenTitle: UILabel!
+    @IBOutlet private weak var resumenTitle: UILabel!
     
-    @IBOutlet weak var resumenText: UITextView!
+    @IBOutlet private weak var resumenText: UITextView!
     
-    private var resumenPresenter = ResumenMoviePresenter()
+    private var resumenPresenter: ResumenMoviePresenter!
     
-    init( resumenPresenter: ResumenMoviePresenter) {
+    init(resumenPresenter: ResumenMoviePresenter) {
         super.init(nibName: nil, bundle: nil)
         self.resumenPresenter = resumenPresenter
     }
